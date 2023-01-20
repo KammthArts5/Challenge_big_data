@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.impute import KNNImputer
+from sklearn.preprocessing import StandardScaler
 
 #%% Files function
 def import_excel_data(excel_file_name):
@@ -80,6 +81,27 @@ def fill_missing_data(data):
     imputer = KNNImputer(n_neighbors=2,weights="uniform")
     
     return imputer.fit_transform(data)
+
+
+#%% Normalization
+
+def normalize_data(data):
+    """
+    En théorie des probabilités et en statistique, une variable centrée réduite est la transformée d'une variable aléatoire par une application, de telle sorte que sa moyenne soit nulle (𝑥_moy=0) et son écart type égal à un (𝜎=1).
+    
+    Parameters
+    ----------
+    data : pandas dataframe
+        Jeu de données importé.
+
+    Returns
+    -------
+    numpy array
+        Données centrées réduites.
+    """
+    
+    sc = StandardScaler()
+    return sc.fit_transform(data)
 
 
 
