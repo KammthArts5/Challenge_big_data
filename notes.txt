@@ -1,0 +1,10 @@
+----- analyse données ---
+
+Factory process KC12
+	3 missing values:
+		-Humidity 194
+		-Temperature 214
+		-M3MPressure 7
+--> create a prepreprocess script
+    Using KNN method (2 neigbours, uniform method)
+
