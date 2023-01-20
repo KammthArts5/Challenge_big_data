@@ -29,15 +29,13 @@ for i in range(1,dim):
 pca_results = pd.DataFrame(data=np.vstack((val_pr,Inertie,Inertie_sum)), 
              index=["Valeur propre", "Variation", "Variation cumulative"], columns=["Axe"+str(i+1) for i in range(dim)]).T
 Corr_ax_par = corr_axes_param(val_pr, vec_pr, dim, Columns)
-fig01 = facp.plot_eigenvalues(val_pr, Inertie_sum, dim)
-fig02 = facp.plot_projection(1, 2, 'quality', data, Tr_data, Corr_ax_par, Inertie, Columns, dim) 
-fig03,Corr_par_par = facp.plot_corr_mat(data)
+fig01 = plot_eigenvalues(val_pr, Inertie_sum, dim)
+fig02 = plot_projection(1, 2, 'KC2', data, Tr_data, Corr_ax_par, Inertie, Columns, dim) 
+fig03,Corr_par_par = plot_corr_mat(data)
 
 # enregistrer toutes les figures
-fig01.savefig('eigenvalues.jpg',format='jpg', dpi=300)      
-fig02.savefig('projections.jpg',format='jpg', dpi=300)
-fig03.savefig('correlation_matrix.jpg',format='jpg', dpi=300)
+fig01.savefig('Figures/eigenvalues.jpg',format='jpg', dpi=300)      
+fig02.savefig('Figures/projections.jpg',format='jpg', dpi=300)
+fig03.savefig('Figures/correlation_matrix.jpg',format='jpg', dpi=300)
 
 #%% Test
-
-A=(val_pr,Inertie,Inertie_sum)
