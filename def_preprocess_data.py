@@ -20,6 +20,23 @@ def import_excel_data(excel_file_name):
     '''
     return pd.read_excel(excel_file_name)
 
+def import_csv_data(csv_file_name, sep=';'):
+    '''
+    Import data from a CSV file.
+
+    Parameters
+    ----------
+    csv_file_name : String
+        Name of the CSV file to extract.
+
+    Returns
+    -------
+    DataFrame object
+        Data from the Excel file in a Pandas DataFrame object.
+
+    '''
+    return pd.read_csv(csv_file_name,sep=sep)
+
 def export_excel_data(data_to_export, excel_file_name, sheet_name="Sheet1"):
     '''
     Export data in an Excel file.
@@ -40,7 +57,8 @@ def export_excel_data(data_to_export, excel_file_name, sheet_name="Sheet1"):
     '''
     
     writer = pd.ExcelWriter(excel_file_name, engine='xlsxwriter')
-    data_to_export.to_excel(writer, sheet_name=sheet_name)
+    data_to_export.to_excel(writer, sheet_name=sheet_name, index=False)
+    writer.save()
     
 #%% Preprocess functions 
 def fill_missing_data(data):

@@ -1,4 +1,4 @@
------ analyse données ---
+----- analyse donnÃ©es ---
 
 Factory process KC12
 	3 missing values:
