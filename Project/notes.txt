@@ -1,0 +1,19 @@
+-----Encoding----
+Créer la pop initiale
+    créer un array de N individus
+        en gros c'est un tableau N*7 de nombre random entre 0 et 9
+
+Deja fait
+
+---Fitness----
+1. split DB into train, validation and test:
+    Deja fait
+    
+2 train SVM model
+    Fonction pour faire un training déja fait
+    Il faut se servir des valeurs encodées
+    
+3 Evaluate fitness
+    juste model.score ?
+    
+    En gros faire fonction(population)-> liste de score
