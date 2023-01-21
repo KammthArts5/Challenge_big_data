@@ -42,7 +42,7 @@ fig03.savefig('Figures/correlation_matrix.jpg',format='jpg', dpi=300)
 
 #%% Export results
 
-writer = pd.ExcelWriter('Résultats_KC2.xlsx', engine='xlsxwriter')
+writer = pd.ExcelWriter('Results_KC2.xlsx', engine='xlsxwriter')
 
 data.to_excel(writer, sheet_name='données initiales')
 
