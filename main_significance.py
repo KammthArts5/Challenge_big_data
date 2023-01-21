@@ -31,11 +31,38 @@ pca_results = pd.DataFrame(data=np.vstack((val_pr,Inertie,Inertie_sum)),
 Corr_ax_par = corr_axes_param(val_pr, vec_pr, dim, Columns)
 fig01 = plot_eigenvalues(val_pr, Inertie_sum, dim)
 fig02 = plot_projection(1, 2, 'KC2', data, Tr_data, Corr_ax_par, Inertie, Columns, dim) 
+fig022 = plot_projection(1, 2, 'KC12', data, Tr_data, Corr_ax_par, Inertie, Columns, dim) 
 fig03,Corr_par_par = plot_corr_mat(data)
 
 # enregistrer toutes les figures
 fig01.savefig('Figures/eigenvalues.jpg',format='jpg', dpi=300)      
-fig02.savefig('Figures/projections.jpg',format='jpg', dpi=300)
+fig02.savefig('Figures/projectionsKC2.jpg',format='jpg', dpi=300)
+fig022.savefig('Figures/projectionsKC12.jpg',format='jpg', dpi=300)
 fig03.savefig('Figures/correlation_matrix.jpg',format='jpg', dpi=300)
 
-#%% Test
+#%% Export results
+
+writer = pd.ExcelWriter('Résultats_KC2.xlsx', engine='xlsxwriter')
+
+data.to_excel(writer, sheet_name='données initiales')
+
+N_data = pd.DataFrame(data=N_data, columns=Columns)
+N_data.to_excel(writer, sheet_name='données normalisées')
+
+Tr_data = pd.DataFrame(data=Tr_data, columns=["Axe"+str(i+1) for i in range(dim)])
+Tr_data.to_excel(writer, sheet_name='données transformées')
+
+pca_results.to_excel(writer, sheet_name='Valeurs propres et Inertie')
+worksheet = writer.sheets['Valeurs propres et Inertie']
+worksheet.insert_image('G1', 'Figures/eigenvalues.jpg')
+
+Corr_ax_par.to_excel(writer, sheet_name='cercle de corrélations', startcol=26)
+worksheet = writer.sheets['cercle de corrélations']
+worksheet.insert_image('A1', 'Figures/projectionsKC2.jpg')
+worksheet.insert_image('A1', 'Figures/projectionsKC12.jpg')
+
+Corr_par_par.to_excel(writer, sheet_name='corrélations entre paramètres', startcol=19)
+worksheet = writer.sheets['corrélations entre paramètres']
+worksheet.insert_image('A1', 'Figures/correlation_matrix.jpg')
+
+writer.save()
