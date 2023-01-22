@@ -21,12 +21,11 @@ X_train, X_dev, X_test, y_train, y_dev, y_test = split_train_dev_test(X, y, 0.6,
 X_train_scaled, X_dev_scaled, X_test_scaled = scale_data(X_train), scale_data(X_dev), scale_data(X_test)
 
 #%% - Example of an application of SVM
-# model = svm_rbf_training(X_train, y_train, C=478, gamma = 5.72)
+# model = svm_rbf_training(X_train_scaled, y_train, C=478, gamma = 5.72)
 # acc = svm_prediction_acc(model, X_dev_scaled, y_dev)
-# print(acc)
 
 #%% - Genetic algorithm : first generation (to be done)
-Ngen = 100
+Ngen = 20
 
 pop = init_pop(100)
 Generations = [pop]
@@ -42,6 +41,8 @@ for i in range(Ngen):
     Generations.append(parents)
     childs = cross_over(parents)
     new_gen = mutation_population(childs)
+    
+print(new_gen)
 
 
 #%% Tests

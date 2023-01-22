@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+from def_ga_svm_functions import *
 
 #%% 
 
@@ -48,15 +48,17 @@ def noise_set(scaled_data, i, noises):
     noised_set = np.copy(scaled_data)
     for k in range(len(scaled_data)):
         noised_set[k,:] = scaled_data[k,:] + noises[i,:]
-        print(noised_set[k,:])
     return noised_set
+
+def store_accuracy(model, X_dev, y_dev, noises):
+    Accuracies = []
+    for i in range(len(noises)):
+        noised_set = noise_set(X_dev, i, noises)
+        Accuracies.append(svm_prediction_acc(model, noised_set, y_dev))
+    return np.array(Accuracies)
 
 #%% test
 
-A = np.array([[1.0,1.0,1.0],
-              [1.0,1.0,1.0],
-              [1.0,1.0,1.0],
-              [1.0,1.0,1.0]])
-noises = generate_gaussian_noises(5, 3)
+noises = generate_gaussian_noises(1000, len(X_train_scaled[0,:]))
 
-B = noise_set(A, 2, noises)
+Accuracies = store_accuracy(model, X_dev_scaled, y_dev, noises)

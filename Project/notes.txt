@@ -28,6 +28,13 @@
     Noise the validation/test set with the ith noise
         Function(set,i,noises)
             Add [i,j]th coordinate of the noise to each line of the dataset
+
+    Assess the prediction accuracy
+        fit = svm_prediction_acc(model, noised_X_dev, y_dev)
+
+    Store the found result
+        In an array ? i x nb measures
+        
         
 
 
