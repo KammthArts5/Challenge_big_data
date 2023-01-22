@@ -1,19 +1,33 @@
------Encoding----
-Créer la pop initiale
-    créer un array de N individus
-        en gros c'est un tableau N*7 de nombre random entre 0 et 9
-
-Deja fait
-
----Fitness----
-1. split DB into train, validation and test:
+------------------------------ Genetic algorithm ----------------------   
+    -----Encoding----
+    Créer la pop initiale
+        créer un array de N individus
+            en gros c'est un tableau N*7 de nombre random entre 0 et 9
+    
     Deja fait
     
-2 train SVM model
-    Fonction pour faire un training déja fait
-    Il faut se servir des valeurs encodées
+    ---Fitness----
+    1. split DB into train, validation and test:
+        Deja fait
+        
+    2 train SVM model
+        Fonction pour faire un training déja fait
+        Il faut se servir des valeurs encodées
+        
+    3 Evaluate fitness
+        juste model.score ?
+        
+        En gros faire fonction(population)-> liste de score
     
-3 Evaluate fitness
-    juste model.score ?
+---------------------- Monte-Carlo simulation ------------------------
+
+    Generate 1000 (N) gaussian noises
+        Numpy.random ?
+        depend on the dimention (dim)
     
-    En gros faire fonction(population)-> liste de score
+    Noise the validation/test set with the ith noise
+        Function(set,i,noises)
+            Add [i,j]th coordinate of the noise to each line of the dataset
+        
+
+
