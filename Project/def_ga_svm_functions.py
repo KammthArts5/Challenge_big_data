@@ -234,3 +234,19 @@ def mutation_population(population):
 
 #%% Efficiency test
 
+def find_best_model(population, X_train_scaled, y_train, X_test_scaled, y_test):
+    best_fitness=0
+    best_individual = population[0,:]
+    fit = fitness_pop(population, X_train_scaled, y_train, X_test_scaled, y_test)
+    for i in range(len(population)):
+        if fit[i]>best_fitness:
+            best_fitness=fit[i]
+            best_individual = population[i,:]
+    
+    C = 100*best_individual[0]+10*best_individual[1]+best_individual[2]+1
+    gamma = best_individual[3]+0.1*best_individual[4]+0.01*best_individual[5]+0.001*(best_individual[6]+1)
+    model = svm_rbf_training(X_train_scaled, y_train, C=C, gamma=gamma)
+    print (C, gamma)
+    print(fit)
+    
+    return model

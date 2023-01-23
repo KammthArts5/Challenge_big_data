@@ -42,10 +42,10 @@ for i in range(Ngen):
     childs = cross_over(parents)
     new_gen = mutation_population(childs)
     
-print(new_gen)
+#print(new_gen)
+
 
 
 #%% Tests
 
-test = np.zeros((5,5))
-
+Optimal_model= find_best_model(new_gen, X_train_scaled, y_train, X_test_scaled, y_test)

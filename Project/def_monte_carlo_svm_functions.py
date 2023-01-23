@@ -4,9 +4,10 @@ from def_ga_svm_functions import *
 
 #%% 
 
-def generate_gaussian_noises(N, dim):
+def generate_gaussian_noises(N, dim, mu=0, sigma=0.025):
     """
     Generate a set of N noises on dim dimensions.
+
 
     Parameters
     ----------
@@ -14,15 +15,17 @@ def generate_gaussian_noises(N, dim):
         Number of noises to generate.
     dim : int
         Number of dimensions of the gaussian noise.
+    mu : float, optional
+        Mean value of the gaussian noise. The default is 0.
+    sigma : float, optional
+        standard deviation of the gausssian noise. The default is 0.025.
 
     Returns
     -------
     Numpy array
         Set of noises.
-
+        
     """
-    mu=0
-    sigma=0.025
         
     return np.random.normal(mu, sigma,[N,dim])
 
