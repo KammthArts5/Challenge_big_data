@@ -18,7 +18,7 @@ y = data.iloc[:,-1]
 X_train, X_dev, X_test, y_train, y_dev, y_test = split_train_dev_test(X, y, 0.6, 0.2, 0.2)          # Split data
 
 #%% - Data scaling (to be done)
-X_train_scaled, X_dev_scaled, X_test_scaled = scale_data(X_train), scale_data(X_dev), scale_data(X_test)
+X_train_scaled, X_test_scaled = scale_data(X_train), scale_data(X_test)
 
 #%% - Example of an application of SVM
 # model = svm_rbf_training(X_train_scaled, y_train, C=478, gamma = 5.72)
@@ -34,6 +34,7 @@ Generations = [pop]
 #- Genetic algorithm : loop (to be done)
 new_gen = pop
 fit = fitness_pop(new_gen, X_train_scaled, y_train, X_test_scaled, y_test)
+print("Step: ", 0, "/", Ngen,"\t Mean accuracy: ", np.mean(fit))
 for i in range(Ngen):
     indexes = best_parents_indexes(new_gen, fit)
     parents=selected_generation(new_gen, indexes)
@@ -41,7 +42,7 @@ for i in range(Ngen):
     childs = cross_over(parents)
     new_gen = mutation_population(childs)
     fit = fitness_pop(new_gen, X_train_scaled, y_train, X_test_scaled, y_test)
-    print("Step: ", i, "/", Ngen,"\t Mean accuracy: ", np.mean(fit))
+    print("Step: ", i+1, "/", Ngen,"\t Mean accuracy: ", np.mean(fit))
     
 #print(new_gen)
 

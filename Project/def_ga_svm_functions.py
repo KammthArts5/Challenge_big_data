@@ -246,5 +246,5 @@ def find_best_model(population, X_train_scaled, y_train, X_test_scaled, y_test):
     C = 100*best_individual[0]+10*best_individual[1]+best_individual[2]+1
     gamma = best_individual[3]+0.1*best_individual[4]+0.01*best_individual[5]+0.001*(best_individual[6]+1)
     model = svm_rbf_training(X_train_scaled, y_train, C=C, gamma=gamma)
-
+    print(C, gamma)
     return model

@@ -60,7 +60,7 @@ def store_accuracy(model, X_dev, y_dev, noises):
         Accuracies.append(svm_prediction_acc(model, noised_set, y_dev))
     return np.array(Accuracies)
 
-
+def 
 
 #%% test
 
