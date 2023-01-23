@@ -60,8 +60,7 @@ def store_accuracy(model, X_dev, y_dev, noises):
         Accuracies.append(svm_prediction_acc(model, noised_set, y_dev))
     return np.array(Accuracies)
 
+
+
 #%% test
 
-noises = generate_gaussian_noises(1000, len(X_train_scaled[0,:]))
-
-Accuracies = store_accuracy(model, X_dev_scaled, y_dev, noises)
