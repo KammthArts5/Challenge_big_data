@@ -34,7 +34,7 @@ def dt_model(X,y):
 
 def save_plot_dt(model,feature_name,labels, file_name="model"):
     """
-    Save the plot tree in a PNG file
+    Save the plot tree in a PNG file.
 
     Parameters
     ----------

@@ -18,12 +18,11 @@ Y_test_2, Y_test_12 = Y_test.iloc[:,0], Y_test.iloc[:,1]
 
 #%% test
 
-model2, labels2 = dt_model(X_train, Y_train_2)
+model2, labels2 = dt_model(X_train, Y_train_2) #KC2
 save_plot_dt(model2,feature_name,labels2,"model2")
 conf_matrix(model2, X_test, Y_test_2)
 
-model12, labels12 = dt_model(X_train, Y_train_12)
+model12, labels12 = dt_model(X_train, Y_train_12) #KC12
 save_plot_dt(model12,feature_name,labels2,"model12")
 conf_matrix(model12, X_test, Y_test_12)
 
-#%% Shap
