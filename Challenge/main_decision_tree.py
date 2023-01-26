@@ -25,3 +25,5 @@ conf_matrix(model2, X_test, Y_test_2)
 model12, labels12 = dt_model(X_train, Y_train_12)
 save_plot_dt(model12,feature_name,labels2,"model12")
 conf_matrix(model12, X_test, Y_test_12)
+
+#%% Shap

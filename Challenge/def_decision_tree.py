@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
 from sklearn import tree
 from sklearn.metrics import confusion_matrix
 
@@ -89,3 +90,4 @@ def conf_matrix(model,X_test,y_test):
     print("\nLa présicion de prédiction du modèle est de : {:.2%}".format(acc))
     
     return cm, acc
+
