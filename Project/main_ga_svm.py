@@ -25,7 +25,7 @@ X_train_scaled, X_test_scaled = scale_data(X_train), scale_data(X_test)
 # acc = svm_prediction_acc(model, X_dev_scaled, y_dev)
 
 #%% - Genetic algorithm : first generation (to be done)
-Ngen = 100
+Ngen = 20
 
 pop = init_pop(100)
 Generations = [pop]
@@ -46,8 +46,6 @@ for i in range(Ngen):
     
 #print(new_gen)
 
-
+optimal_model= find_best_model(new_gen, X_train_scaled, y_train, X_test_scaled, y_test)
 
 #%% Tests
-
-optimal_model= find_best_model(new_gen, X_train_scaled, y_train, X_test_scaled, y_test)

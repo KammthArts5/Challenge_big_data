@@ -21,7 +21,7 @@
     
 ---------------------- Monte-Carlo simulation ------------------------
 
-    Generate 1000 (N) gaussian noises
+    Generate 1000 (N) gaussian noises xxxx
         Numpy.random ?
         depend on the dimention (dim)
     
@@ -29,10 +29,10 @@
         Function(set,i,noises)
             Add [i,j]th coordinate of the noise to each line of the dataset
 
-    Assess the prediction accuracy
+    Assess the prediction accuracy xxxx
         fit = svm_prediction_acc(model, noised_X_dev, y_dev)
 
-    Store the found result
+    Store the found result xxxx
         In an array ? i x nb measures
         
         
