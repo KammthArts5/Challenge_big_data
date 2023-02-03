@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 from def_monte_carlo_svm_functions import *
 from def_ga_svm_functions import *
-from main_ga_svm import *
 #%%
 
 def sobol(model, N, parameter, X_dev, y_dev):
@@ -11,24 +10,24 @@ def sobol(model, N, parameter, X_dev, y_dev):
     
     scaling = MinMaxScaler()
     
-    gaussian_noise = generate_gaussian_noises(1000, X_test, noise_rate=2.5)
+    noise = generate_gaussian_noises(1000, X_dev, noise_rate=2.5)
     
-    gaussian_noise1 = generate_gaussian_noises(1000, X_test, noise_rate=2.5) #generation of 2 gaussian noises
-    gaussian_noise2 = generate_gaussian_noises(1000, X_test, noise_rate=2.5)
+    noise1 = generate_gaussian_noises(1000, X_dev, noise_rate=2.5)
+    noise2 = generate_gaussian_noises(1000, X_dev, noise_rate=2.5)
     
     YaYk = []
     acc_drop = []
     
     for i in range(N):
         
-        X_dev_noise = X_dev + gaussian_noise[i]
+        X_dev_noise = X_dev + noise[i]
         
     
-        Ak = X_dev + gaussian_noise1[i]  #2 Gaussian Noises for the noisy sets Ak and Bk
-        Bk = X_dev + gaussian_noise2[i]
+        Ak = X_dev + noise1[i]
+        Bk = X_dev + noise2[i]
         
         Ck = Bk
-        Ck.replace(Ck[parameter], Ak[parameter])  #Only the column of the wanted parameter of Ak is replaced in the set Ck
+        Ck.replace(Ck[parameter], Ak[parameter]) 
         
         scaling.fit(Ak)
         Ak_scaled = scaling.transform(Ak)

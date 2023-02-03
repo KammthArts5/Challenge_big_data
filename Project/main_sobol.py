@@ -23,7 +23,8 @@ expected_value = np.mean(Y_accur)
 Si = []
 Sti = []
 for parameter in X_dev :
-    s = sobol(optimal_model,100,parameter, X_dev, y_dev)
+    s = sobol(optimal_model,100,parameter, X_test, y_test)
     Si.append(s)
-    Sti.append(1-s) #Not really sure of this one. It is described as such in the course but not in the literature.
-print(Si, Sti)
+    Sti.append(1-s) 
+print(Si)
+print(Sti)

@@ -36,11 +36,11 @@ def generate_gaussian_noises(N, X, mu=0, noise_rate=2.5):
     """
         
     sigmas = standards_input(X)
-    noises = np.random.normal(mu, noise_rate*sigmas[0]/100, (N,1))
-    for i in range(1,len(sigmas)):
-        noises = np.append(noises, np.random.normal(mu, noise_rate*sigmas[i]/100, (N,1)),axis=1)
+    noises=[]
+    for i in range(N):
+        noises.append(np.array([[np.random.normal(0, sigmas[i]*noise_rate/100) for i in range(X.shape[1])] for j in range(X.shape[0])]))
     
-    return noises
+    return np.array(noises)
 
 def noise_set(data, i, noises):
     """
@@ -61,9 +61,7 @@ def noise_set(data, i, noises):
         Noised data.
 
     """
-    noised_data = np.copy(data)
-    for k in range(len(data)):
-        noised_data[k,:] = noised_data[k,:] + noises[i,:]
+    noised_data = data + noises[i,:]
     return scale_data(noised_data)
 
 def store_accuracy(model, X_dev, y_dev, noises):
@@ -73,7 +71,23 @@ def store_accuracy(model, X_dev, y_dev, noises):
         Accuracies.append(svm_prediction_acc(model, noised_set, y_dev))
     return np.array(Accuracies)
 
-
+def acc_loss(model, N, X_dev, X_dev_scaled, y_dev):
+    
+    std_dev = standards_input(X_dev)
+    
+    acc_drop = []
+    
+    gaussian_noise = generate_gaussian_noises(N,X_dev,noise_rate=2.5)
+    
+    for i in range(N):
+        X_dev_noise = X_dev + gaussian_noise[i]
+        X_dev_noise = scale_data(X_dev_noise)
+        
+        acc_drop.append(model.score(X_dev_scaled, y_dev)-model.score(X_dev_noise, y_dev))
+        
+        
+        
+    return acc_drop
 
 #%% test
 
