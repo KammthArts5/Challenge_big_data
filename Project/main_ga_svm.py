@@ -25,7 +25,7 @@ X_train_scaled, X_test_scaled = scale_data(X_train), scale_data(X_test)
 # acc = svm_prediction_acc(model, X_dev_scaled, y_dev)
 
 #%% - Genetic algorithm : first generation (to be done)
-Ngen = 20
+Ngen = 25
 
 pop = init_pop(100)
 Generations = [pop]

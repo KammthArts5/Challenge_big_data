@@ -7,8 +7,8 @@ from main_ga_svm import *
 
 #%%
 
-noises = generate_gaussian_noises(5, X_dev, noise_rate=20.5)
+noises = generate_gaussian_noises(1000, X_test, noise_rate=250.5)
 
-Accuracies = store_accuracy(optimal_model, X_dev, y_dev, noises)
+Accuracies = store_accuracy(optimal_model, X_test, y_test, noises)
 
 print(np.mean(Accuracies))
